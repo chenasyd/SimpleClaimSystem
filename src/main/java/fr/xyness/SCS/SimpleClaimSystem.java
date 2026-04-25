@@ -55,6 +55,7 @@ import fr.xyness.SCS.Config.ClaimGuis;
 import fr.xyness.SCS.Config.ClaimLanguage;
 import fr.xyness.SCS.Config.ClaimPurge;
 import fr.xyness.SCS.Config.ClaimSettings;
+import fr.xyness.SCS.FabricNetworking.FabricNetworkHandler;
 import fr.xyness.SCS.Listeners.*;
 import fr.xyness.SCS.Support.*;
 import fr.xyness.SCS.Types.WorldMode;
@@ -99,6 +100,9 @@ public class SimpleClaimSystem extends JavaPlugin {
     /** Instance of ClaimPurge for purge system */
     private ClaimPurge claimPurgeInstance;
     
+    /** Instance of FabricNetworkHandler for Fabric client communication */
+    private FabricNetworkHandler fabricNetworkHandler;
+    
     /** Instance of CPlayerMain for players data */
     private CPlayerMain cPlayerMainInstance;
     
@@ -141,10 +145,12 @@ public class SimpleClaimSystem extends JavaPlugin {
         this.instance = this;
 
         if (loadConfig(false, Bukkit.getConsoleSender())) {
+            fabricNetworkHandler = new FabricNetworkHandler(this);
             info(" ");
             info(ChatColor.GREEN + "Successfully enabled!" + ChatColor.GRAY + " | By Xyness");
             info(ChatColor.GRAY + "Wiki: " + ChatColor.WHITE + "https://xyness.gitbook.io/simpleclaimsystem");
             info(ChatColor.GRAY + "Discord: " + ChatColor.WHITE + "https://discord.gg/6sRTGprM95");
+            info(ChatColor.AQUA + "Fabric Client Support: " + ChatColor.GREEN + "ENABLED");
             info(" ");
         } else {
             Bukkit.getServer().getPluginManager().disablePlugin(this);
@@ -156,6 +162,10 @@ public class SimpleClaimSystem extends JavaPlugin {
      */
     @Override
     public void onDisable() {
+        if (fabricNetworkHandler != null) {
+            fabricNetworkHandler.unregister();
+        }
+        
         if (dataSource != null) {
             dataSource.close();
         }
@@ -166,6 +176,7 @@ public class SimpleClaimSystem extends JavaPlugin {
         info(ChatColor.GOLD + "  " + ChatColor.BOLD + "SimpleClaimSystem V2" + ChatColor.RESET + ChatColor.YELLOW + " - Premium Edition");
         info(ChatColor.GRAY + "  Unlock advanced features, priority support & more.");
         info(ChatColor.GRAY + "  " + ChatColor.UNDERLINE + "https://builtbybit.com/resources/simpleclaimsystem-v2.92437/");
+        info(ChatColor.AQUA + "Fabric Client Support: " + ChatColor.RED + "DISABLED");
         info(" ");
         getLogger().info("SimpleClaimSystem disabled.");
     }
@@ -2047,6 +2058,10 @@ public class SimpleClaimSystem extends JavaPlugin {
 
     public ClaimPurge getAutopurge() {
         return claimPurgeInstance;
+    }
+
+    public FabricNetworkHandler getFabricNetworkHandler() {
+        return fabricNetworkHandler;
     }
     
     /**

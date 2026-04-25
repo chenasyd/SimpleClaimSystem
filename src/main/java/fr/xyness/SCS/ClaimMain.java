@@ -363,6 +363,180 @@ public class ClaimMain {
     public Claim getClaim(Chunk chunk) {
         return listClaims.get(chunk);
     }
+
+    /**
+     * Gets a claim by its UUID.
+     *
+     * @param id The UUID of the target claim.
+     * @return The claim associated with the UUID, or null if none exists
+     */
+    public Claim getClaim(UUID id) {
+        return listClaims.values().stream()
+                .filter(claim -> claim.getUUID().equals(id))
+                .findFirst()
+                .orElse(null);
+    }
+
+    /**
+     * Gets a claim at the specified location.
+     *
+     * @param location The location to check for claims.
+     * @return The claim at the location, or null if none exists
+     */
+    public Claim getClaimAtLocation(Location location) {
+        Chunk chunk = location.getChunk();
+        return listClaims.get(chunk);
+    }
+
+    /**
+     * Gets a claim at the specified chunk coordinates.
+     *
+     * @param chunk The chunk to check for claims.
+     * @return The claim associated with the chunk, or null if none exists
+     */
+    public Claim getClaimAtChunk(Chunk chunk) {
+        return listClaims.get(chunk);
+    }
+
+    /**
+     * Adds a new claim to the system.
+     *
+     * @param claim The claim to add.
+     */
+    public void addClaim(Claim claim) {
+        for (Chunk chunk : claim.getChunks()) {
+            listClaims.put(chunk, claim);
+        }
+        playerClaims.computeIfAbsent(claim.getUUID(), k -> new CustomSet<>()).add(claim);
+    }
+
+    /**
+     * Removes a claim from the system by its UUID.
+     *
+     * @param claimId The UUID of the claim to remove.
+     */
+    public void removeClaim(UUID claimId) {
+        Claim claim = getClaim(claimId);
+        if (claim != null) {
+            for (Chunk chunk : claim.getChunks()) {
+                listClaims.remove(chunk, claim);
+            }
+            CustomSet<Claim> playerClaimSet = playerClaims.get(claim.getUUID());
+            if (playerClaimSet != null) {
+                playerClaimSet.remove(claim);
+            }
+        }
+    }
+
+    /**
+     * Saves a claim to the database asynchronously.
+     *
+     * @param claim The claim to save.
+     */
+    public void saveClaim(Claim claim) {
+        instance.executeAsync(() -> {
+            try (Connection connection = instance.getDataSource().getConnection()) {
+                String sql = "INSERT OR REPLACE INTO scs_claims_1 " +
+                        "(id_claim, owner_uuid, owner_name, claim_name, claim_description, " +
+                        "chunks, world_name, location, members, permissions, for_sale, sale_price, bans) " +
+                        "VALUES (?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?, ?)";
+
+                try (PreparedStatement stmt = connection.prepareStatement(sql)) {
+                    stmt.setInt(1, claim.getId());
+                    stmt.setString(2, claim.getUUID().toString());
+                    stmt.setString(3, claim.getOwner());
+                    stmt.setString(4, claim.getName());
+                    stmt.setString(5, claim.getDescription());
+
+                    StringBuilder chunksStr = new StringBuilder("[");
+                    List<int[]> chunksList = new ArrayList<>();
+                    for (Chunk chunk : claim.getChunks()) {
+                        chunksList.add(new int[]{chunk.getX(), chunk.getZ()});
+                        if (chunksStr.length() > 1) chunksStr.append(",");
+                        chunksStr.append("[").append(chunk.getX()).append(",").append(chunk.getZ()).append("]");
+                    }
+                    chunksStr.append("]");
+                    stmt.setString(6, chunksStr.toString());
+
+                    Location loc = claim.getLocation();
+                    stmt.setString(7, loc.getWorld().getName());
+                    stmt.setString(8, loc.getBlockX() + "," + loc.getBlockY() + "," + loc.getBlockZ());
+
+                    StringBuilder membersStr = new StringBuilder("[");
+                    boolean first = true;
+                    for (UUID member : claim.getMembers()) {
+                        if (!first) membersStr.append(",");
+                        membersStr.append("\"").append(member.toString()).append("\"");
+                        first = false;
+                    }
+                    membersStr.append("]");
+                    stmt.setString(9, membersStr.toString());
+
+                    StringBuilder permsStr = new StringBuilder("{");
+                    first = true;
+                    Map<String, LinkedHashMap<String, Boolean>> perms = claim.getPermissions();
+                    for (Map.Entry<String, LinkedHashMap<String, Boolean>> roleEntry : perms.entrySet()) {
+                        if (!first) permsStr.append(",");
+                        permsStr.append("\"").append(roleEntry.getKey()).append("\":{");
+                        boolean firstPerm = true;
+                        for (Map.Entry<String, Boolean> permEntry : roleEntry.getValue().entrySet()) {
+                            if (!firstPerm) permsStr.append(",");
+                            permsStr.append("\"").append(permEntry.getKey()).append("\":").append(permEntry.getValue());
+                            firstPerm = false;
+                        }
+                        permsStr.append("}");
+                        first = false;
+                    }
+                    permsStr.append("}");
+                    stmt.setString(10, permsStr.toString());
+
+                    stmt.setBoolean(11, claim.getSale());
+                    stmt.setDouble(12, claim.getPrice());
+
+                    StringBuilder bansStr = new StringBuilder("[");
+                    first = true;
+                    for (UUID ban : claim.getBans()) {
+                        if (!first) bansStr.append(",");
+                        bansStr.append("\"").append(ban.toString()).append("\"");
+                        first = false;
+                    }
+                    bansStr.append("]");
+                    stmt.setString(13, bansStr.toString());
+
+                    stmt.executeUpdate();
+                }
+            } catch (SQLException e) {
+                instance.info("§c[SCS] §fError saving claim: " + e.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Gets default permissions from settings.
+     *
+     * @return Map of default permissions
+     */
+    public Map<String, LinkedHashMap<String, Boolean>> getDefaultPermissions() {
+        return instance.getSettings().getDefaultValues();
+    }
+
+    /**
+     * Gets double setting value with default.
+     *
+     * @param group The group name.
+     * @param key The setting key.
+     * @param defaultValue The default value.
+     * @return The setting value
+     */
+    public double getDoubleSetting(String group, String key, double defaultValue) {
+        try {
+            return instance.getSettings().getGroupsSettings()
+                    .getOrDefault(group, new HashMap<>())
+                    .getOrDefault(key, defaultValue);
+        } catch (Exception e) {
+            return defaultValue;
+        }
+    }
     
     /**
      * Gets a claim by its name.
