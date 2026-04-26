@@ -254,6 +254,11 @@ one-chunk-of-claim-must-be-adjacent: "§c新领地的至少一个区块必须与
 add-chunk-already-owner: |
   §f这已经是您的一个领地。
   §f使用 §d/claim merge %claim-name% %claim-name-1%§f 来合并它们。
+add-chunk-adjacent-to-your-claim: |
+  §f此区块与您的领地 '§e%adjacent-claim-name%§f' §c相邻§f。
+  §f您想要：
+  §f  §d1. §f使用 §d/claim addchunk %adjacent-claim-name%§f 扩建 '§e%adjacent-claim-name%§f'
+  §f  §d2. §f创建 §c新的独立领地§f（忽略此警告）
 add-chunk-not-owner: "§c此区块已属于一个领地。"
 add-chunk-already-in-claim: "§c此区块已属于您的领地 '%claim-name%'。"
 add-chunk-successful: "§f区块 §a%chunk%§f 已添加到 §e%claim-name%§f。"

@@ -2808,11 +2808,20 @@ public class ClaimCommand implements CommandExecutor, TabCompleter {
         instance.getMain().isAreaClaimFree(chunk, cPlayer.getClaimDistance(), playerName)
         		.thenAccept(successs -> {
         			if (successs) {
-        		        // Check if the player can claim
-        		        if (!cPlayer.canClaim()) {
-        		        	instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("cant-claim-anymore")));
-        		            return;
-        		        }
+        		        // Check if adjacent to player's own claim
+        		        instance.getMain().getAdjacentOwnClaim(chunk, playerName)
+        		        		.thenAccept(adjacentClaim -> {
+        		        			if (adjacentClaim != null) {
+        		        				instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("add-chunk-adjacent-to-your-claim")
+        		        						.replace("%adjacent-claim-name%", adjacentClaim.getName())));
+        		        				return;
+        		        			}
+
+        				        // Check if the player can claim
+        				        if (!cPlayer.canClaim()) {
+        				        	instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("cant-claim-anymore")));
+        				            return;
+        				        }
         		        
                         // Check if player can claim with all these chunks (total)
                         if (!cPlayer.canClaimTotalWithNumber(instance.getMain().getAllChunksFromAllClaims(playerName).size()+1)) {
@@ -2830,29 +2839,35 @@ public class ClaimCommand implements CommandExecutor, TabCompleter {
         		                return;
         		            }
 
-        		            instance.getVault().removePlayerBalance(playerName, price);
-        		            if (price > 0) instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("you-paid-claim").replace("%price%", instance.getMain().getPrice(String.valueOf((double) Math.round(price * 100.0)/100.0))).replace("%money-symbol%", instance.getLanguage().getMessage("money-symbol"))));
-        		        }
-        		        
-        		        // Create claim
-        		        instance.getMain().createClaim(player, chunk)
-        		        	.thenAccept(success -> {
-        		        		if (success) {
-        		        			int remainingClaims = cPlayer.getMaxClaims() - cPlayer.getClaimsCount();
-        		        			instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("create-claim-success").replace("%remaining-claims%", String.valueOf(remainingClaims))));
-        		        			if (instance.getSettings().getBooleanSetting("claim-particles")) instance.getMain().displayChunks(player, new CustomSet<>(Set.of(chunk)), true, false);
-        		        		} else {
-        		        			instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("error")));
-        		        		}
-        		        	})
-        		            .exceptionally(ex -> {
-        		                instance.getLogger().severe("Async claim operation failed: " + ex.getMessage());
-        		                ex.printStackTrace();
-        		                return null;
-        		            });
+                                    instance.getVault().removePlayerBalance(playerName, price);
+                                    if (price > 0) instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("you-paid-claim").replace("%price%", instance.getMain().getPrice(String.valueOf((double) Math.round(price * 100.0)/100.0))).replace("%money-symbol%", instance.getLanguage().getMessage("money-symbol"))));
+                                }
+
+                                // Create claim
+                                instance.getMain().createClaim(player, chunk)
+                                	.thenAccept(success -> {
+                                		if (success) {
+                                			int remainingClaims = cPlayer.getMaxClaims() - cPlayer.getClaimsCount();
+                                			instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("create-claim-success").replace("%remaining-claims%", String.valueOf(remainingClaims))));
+                                			if (instance.getSettings().getBooleanSetting("claim-particles")) instance.getMain().displayChunks(player, new CustomSet<>(Set.of(chunk)), true, false);
+                                		} else {
+                                			instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("error")));
+                                		}
+                                	})
+                                    .exceptionally(ex -> {
+                                        instance.getLogger().severe("Async claim operation failed: " + ex.getMessage());
+                                        ex.printStackTrace();
+                                        return null;
+                                    });
+        					})
+        					.exceptionally(ex -> {
+        					    instance.getLogger().severe("Async adjacent claim check failed: " + ex.getMessage());
+        					    ex.printStackTrace();
+        					    return null;
+        					});
         			} else {
         				instance.executeEntitySync(player, () -> player.sendMessage(instance.getLanguage().getMessage("cannot-claim-because-claim-near")));
-        	        	return;
+                    	return;
         			}
         		})
 				.exceptionally(ex -> {

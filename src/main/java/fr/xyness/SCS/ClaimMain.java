@@ -4918,6 +4918,30 @@ public class ClaimMain {
     }
 
     /**
+     * Checks if any adjacent chunk to the given chunk is claimed by the same player.
+     *
+     * @param centerChunk The central chunk to check adjacency for.
+     * @param playerName   The name of the player to check ownership.
+     * @return A CompletableFuture containing the adjacent Claim if found, or null if no adjacent claim owned by the player exists.
+     */
+    public CompletableFuture<Claim> getAdjacentOwnClaim(Chunk centerChunk, String playerName) {
+        return CompletableFuture.supplyAsync(() -> {
+            int cx = centerChunk.getX();
+            int cz = centerChunk.getZ();
+            int[][] offsets = {{0, 1}, {0, -1}, {1, 0}, {-1, 0}};
+
+            for (int[] offset : offsets) {
+                Chunk neighbor = new Location(centerChunk.getWorld(), (cx + offset[0]) * 16, 0, (cz + offset[1]) * 16).getChunk();
+                Claim claim = listClaims.get(neighbor);
+                if (claim != null && claim.getOwner().equals(playerName)) {
+                    return claim;
+                }
+            }
+            return null;
+        });
+    }
+
+    /**
      * Method to get the direction (north, south, east or west).
      *
      * @param yaw the yaw angle

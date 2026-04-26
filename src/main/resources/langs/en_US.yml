@@ -254,6 +254,11 @@ one-chunk-of-claim-must-be-adjacent: "§cAt least one chunk of the new claim mus
 add-chunk-already-owner: |
   §fThis is already one of your claims.
   §fUse §d/claim merge %claim-name% %claim-name-1%§f to merge them.
+add-chunk-adjacent-to-your-claim: |
+  §fThis chunk is §cadjacent§f to your claim '§e%adjacent-claim-name%§f'.
+  §fDo you want to:
+  §f  §d1. §fExpand '§e%adjacent-claim-name%§f' using §d/claim addchunk %adjacent-claim-name%§f
+  §f  §d2. §fCreate a §cnew separate claim§f (ignoring this warning)
 add-chunk-not-owner: "§cThis chunk already belongs to a claim."
 add-chunk-already-in-claim: "§cThis chunk already belongs to your claim '%claim-name%'."
 add-chunk-successful: "§fThe chunk §a%chunk%§f has been added to §e%claim-name%§f."
