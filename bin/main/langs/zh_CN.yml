@@ -1,0 +1,986 @@
+# ***********************
+# *  语言设置  *
+# ***********************
+
+
+# > 控制台消息
+
+command-only-by-players: "§c此命令只能由玩家使用。"
+reload-attempt: |
+  §6正在尝试重新加载.. 请稍候。
+  §7您可以继续您正在做的事情。
+reload-complete: "§a重新加载完成。"
+reload-not-complete: "§c重新加载失败。"
+config-reload-attempt: |
+  §6正在尝试重新加载配置.. 请稍候。
+  §7您可以继续您正在做的事情。
+config-reload-complete: "§a配置重新加载完成。"
+config-reload-not-complete: "§c配置重新加载失败。"
+
+
+# > Boss栏消息
+
+bossbar-protected-area-message: "§f您正在 §e保护区§f 内！"
+bossbar-owner-message: "§f您正在自己的领地 §e%owner% §b(%name%)"
+bossbar-member-message: "§f您正在 §e%owner% §b(%name%) §f的领地内"
+bossbar-visitor-message: "§f您正在访问 §e%owner% §b(%name%) §f的领地"
+
+bossbar-protected-area-for-sale-message: "§f§e保护区§f - §6§l 待售 §b/claim buy §a(%price%%money-symbol%)"
+bossbar-owner-for-sale-message: "§e您的领地 §f- §b%name%§f - §6§l待售 §7/claim cancel §a(%price%%money-symbol%)"
+bossbar-member-for-sale-message: "§f领地 §b%name%§f 属于 §e%owner%§f - §6§l待售 §b/claim buy §a(%price%%money-symbol%)"
+bossbar-visitor-for-sale-message: "§f领地 §b%name%§f 属于 §e%owner%§f - §6§l待售 §b/claim buy §a(%price%%money-symbol%)"
+
+
+# > 玩家消息
+
+free-territory: "§c此领地不属于任何人。"
+territory-not-yours: "§c此领地不属于您。"
+already-member: "§c%player% 已经可以访问您的领地。"
+add-member-success: "§e%player%§f 已成功添加到 §e%claim-name%§f。"
+error: "§c发生错误，请联系管理员。"
+not-member: "§c%player% 不是此领地的成员。"
+cant-remove-owner: "§c您不能移除领地的所有者（您自己）。"
+remove-member-success: "§e%player%§f 已从 §e%claim-name%§f 中成功移除。"
+create-error-protected-area: "§c您在服务器的保护区内。"
+create-already-yours: "§c您已经在此属于您的领地上。"
+create-already-claim: "§c您在 %player% 的领地上。"
+create-protected-area-success: "§a您已创建一个保护区。\n§f使用 §e/parea settings§f 来配置此区域。"
+create-protected-area-radius-success: "§a您已创建保护区 §b(%number% 区块)§a。\n§f使用 §e/parea settings %claim-name%§f 来配置此区域。"
+create-claim-success: "§a您现在是此领地的所有者。\n§f使用 §e/claim settings§f 来配置您的领地。"
+create-claim-radius-success: "§a您现在是此领地 §b(%number% 区块)§a 的所有者。\n§f使用 §e/claim settings %claim-name%§f 来配置您的领地。"
+cant-radius-claim-already-claim: "§c此半径内的一些区块属于其他人。"
+delete-all-claims-success: "§f您的所有领地已成功删除。"
+territory-delete-success: "§a领地删除成功。"
+territory-delete-error: "§c部分领地无法删除 (%number%/%number-max%)，这可能是因为它不属于您。"
+cant-claim-anymore: "§c您已达到每个玩家的最大领地数量。"
+cant-claim-anymore-other: "§c%player% 已达到每个玩家的最大领地数量。"
+cant-radius-claim: "§c您不能使用此半径来创建领地。"
+world-disabled: "§c在世界 '%world%' 中禁用了领地功能。"
+name-change-ask: "§f使用 §e/claim setname <claim-name> <new-name>§f 来更改。"
+name-change-success: "§f领地的新名称：§e%name%§f。"
+loc-change-success: "§f领地的新重生点：§e%coords%§f。"
+error-name-exists: "§c领地 '%name%' 已经存在。"
+error-name-space: "§c新名称不能包含空格。"
+teleportation-in-progress: "§f传送将在 §e%delay% 秒§f 后进行，请不要移动。"
+teleportation-canceled-moving: "§c传送已取消，因为您移动了。"
+apply-all-settings-success: "§e设置§f 已应用到§e 您的所有领地§f。"
+apply-all-admin-settings-success: "§e设置§f 已应用到§e 所有保护区§f。"
+error-claim-visitors-deny: "§c此领地不允许访客。"
+error-not-right-claim: "§c您必须在相应的领地内。"
+claim-player-not-found: "§c此领地不存在。"
+cmd-no-permission: "§c您无权使用此命令。"
+max-chunks-per-claim-must-be-positive: "§c区块限制必须为正数。"
+max-chunks-per-claim-must-be-number: "§c区块限制必须是数字。"
+claim-limit-must-be-positive: "§c领地限制必须为正数。"
+claim-limit-must-be-number: "§c领地限制必须是数字。"
+claim-limit-radius-must-be-positive: "§c领地半径限制必须为正数。"
+claim-limit-radius-must-be-number: "§c领地半径限制必须是数字。"
+teleportation-delay-must-be-positive: "§c传送延迟必须为正数。"
+teleportation-delay-must-be-number: "§c传送延迟必须是数字。"
+set-player-teleportation-delay-success: "§e%player%§f 的传送延迟现在为 §e%amount%s§f。"
+set-player-max-claim-success: "§e%player%§f 最多可以拥有 §e%amount% 个领地§f。"
+set-player-max-radius-claim-success: "§e%player%§f 可以在 §e%amount%§f 半径内创建领地。"
+worldguard-cannot-claim-in-region: "§c您不能在此区域创建领地。"
+claim-set-description-success: "§f§e%name%§f 的描述已设置为：\n§7%description%"
+claim-price-must-be-number: "§c您的售价必须是正确的数字。"
+claim-for-sale-success: "§f您的领地 §e%name%§f 现在以 §e%price%%money-symbol%§f 的价格出售。"
+claim-in-sale-cancel: "§f您的领地 §e%name%§f 不再出售。"
+claim-is-not-in-sale: "§c此领地未在出售。"
+buy-but-not-enough-money: "§c您没有足够的资金。"
+buy-claim-success: "§f您以 §e%price%%money-symbol%§f 的价格从 §e%owner%§f 购买了领地 §e%name%§f。"
+economy-disabled: "§c领地的经济功能已禁用。"
+sell-claim-price-syntax: "§c价格必须在 0%money-symbol% 和 %max-price%%money-symbol% 之间。"
+the-claim-does-not-exists-anymore: "§c您尝试访问的领地已不存在。"
+claim-has-been-sold: "§f您的领地 §e%name%§f 已出售给 §e%buyer%§f。"
+autoclaim-off: "§f自动认领已关闭。"
+autoclaim-on: "§f自动认领已开启。"
+autoaddchunk-off: "§f自动添加区块已关闭。"
+autoaddchunk-on: "§f自动添加区块已开启，适用于领地 §7%claim-name%§f。"
+autodelchunk-off: "§f自动删除区块已关闭。"
+autodelchunk-on: "§f自动删除区块已开启，适用于领地 §7%claim-name%§f。"
+autounclaim-off: "§f自动取消认领已关闭。"
+autounclaim-on: "§f自动取消认领已开启。"
+autoaddchunk-not-enabled: "§c自动添加区块已关闭。"
+autodelchunk-not-enabled: "§c自动删除区块已关闭。"
+there-is-a-claim-not-adjacent: "§c至少有一个领地与其他领地不相邻。"
+group-does-not-exist: "§c此群组不存在。"
+set-group-teleportation-delay-success: "§f群组 §e%group%§f 的传送延迟现在为 §e%amount%s§f。"
+set-group-max-claim-success: "§f群组 §e%group%§f 最多可以拥有 §e%amount% 个领地§f。"
+set-group-max-radius-claim-success: "§f群组 §e%group%§f 可以在 §e%amount%§f 半径内创建领地。"
+forceunclaim-success: "§f§e%owner%§f 的领地已被取消认领。"
+setowner-success: "§e%owner%§f 现在是您所在领地的新所有者。"
+setowner-all-other-success: "§e%owner%§f 现在是 §e%old-owner%§f §e所有领地§f 的新所有者。"
+setowner-claim-other-success: "§e%owner%§f 现在是 §e%old-owner%§f 的领地 §e%claim-name%§f 的新所有者。"
+setowner-all-success: "§e%owner%§f 现在是 §e您的所有领地§f 的新所有者。"
+setowner-claim-success: "§e%owner%§f 现在是您的领地 §e%claim-name%§f 的新所有者。"
+setting-changed-via-command: "§f设置 §e%setting%§f 已设置为 §e%value%§f。"
+setting-must-be-boolean: "§c此设置的值必须为 true 或 false。"
+setting-must-be-protection-message: "§c此设置的值必须是：ACTION_BAR, TITLE, SUBTITLE 或 CHAT。"
+max-sell-price-must-be-positive: "§c最高售价必须 > 0。"
+max-sell-price-must-be-number: "§c最高售价必须是数字。"
+bossbar-color-incorrect: "§c此颜色不存在。"
+bossbar-style-incorrect: "§c此样式不存在。"
+mat-incorrect: "§c此材料不存在。"
+entity-incorrect: "§c此实体类型不存在。"
+setting-list-changed-via-command: "§f材料 §e%material%§f 已添加到 §e%setting%§f。"
+setting-list-changeda-via-command: "§f材料 §e%material%§f 已从 §e%setting%§f 中移除。"
+setting-incorrect: "§c此设置不存在。"
+material-already-in-list: "§c此材料已在列表中。"
+material-not-in-list: "§c此材料不在列表中。"
+entity-already-in-list: "§c此实体已在列表中。"
+entity-not-in-list: "§c此实体不在列表中。"
+setting-list-changed-via-command-entity: "§f实体 §e%entity%§f 已添加到 §e%setting%§f。"
+setting-list-changeda-via-command-entity: "§f实体 §e%entity%§f 已从 §e%setting%§f 中移除。"
+world-already-in-list: "§c此世界已在列表中。"
+world-not-in-list: "§c此世界不在列表中。"
+world-list-changed-via-command: "§f世界 §e%name%§f 已添加到 §e禁用的世界§f。"
+world-list-changeda-via-command: "§f世界 §e%name%§f 已从 §e禁用的世界§f 中移除。"
+cant-add-member-anymore: "§c您已达到每个领地的最大成员数量。"
+you-cannot-use-this-name: "§c您不能在新领地名称中使用 'claim-'。"
+incorrect-characters-name: "§c您必须使用仅包含字母和数字的名称。"
+incorrect-characters-description: "§c您必须使用仅包含字母和数字的描述。"
+claim-not-an-admin-claim: "§c此领地不是保护区。"
+not-using-database: "§c数据库在 config.yml 中已禁用。"
+member-limit-must-be-positive: "§c成员限制必须为正数。"
+member-limit-must-be-number: "§c成员限制必须是数字。"
+set-player-member-limit-success: "§e%player%§f 每个领地最多可以有 §e%amount% 个成员§f。"
+set-group-member-limit-success: "§f群组 §e%group%§f 每个领地最多可以有 §e%amount% 个成员§f。"
+claim-was-sold: "§f您的领地 §e%name%§f 被 §e%buyer%§f 以 §e%price%%money-symbol%§f 的价格购买。"
+target-does-not-have-claim: "§c玩家 '%name%' 没有领地。"
+you-paid-claim: "§f您为创建领地支付了 §e%price%%money-symbol%§f。"
+you-paid-chunk: "§f您为添加区块支付了 §e%price%%money-symbol%§f。"
+buy-but-not-enough-money-claim: "§c您没有足够的资金。您缺少 %missing-price%%money-symbol%。"
+claim-cost-must-be-positive: "§c领地成本必须为正数。"
+claim-cost-must-be-number: "§c领地成本必须是数字。"
+chunk-cost-must-be-positive: "§c区块成本必须为正数。"
+chunk-cost-must-be-number: "§c区块成本必须是数字。"
+set-player-claim-cost-success: "§e%player%§f 创建领地时将支付 §e%amount%§f。"
+set-player-chunk-cost-success: "§e%player%§f 添加区块时将支付 §e%amount%§f。"
+set-player-max-chunks-per-claim-success: "§e%player%§f 每个领地最多可以有 §e%amount%§f 个区块。"
+set-group-chunk-cost-success: "§f群组 §e%group%§f 添加区块时将支付 §e%amount%§f。"
+set-group-claim-cost-success: "§f群组 §e%group%§f 创建领地时将支付 §e%amount%§f。"
+set-group-max-chunks-per-claim-success: "§e%group%§f 每个领地最多可以有 §e%amount%§f 个区块。"
+claim-cost-multiplier-must-be-positive: "§c领地成本乘数必须为正数。"
+claim-cost-multiplier-must-be-number: "§c领地成本乘数必须是数字。"
+set-player-claim-cost-multiplier-success: "§f乘数 §e%amount%§f 将用于 §e%player%§f 的领地成本。"
+set-group-claim-cost-multiplier-success: "§f乘数 §e%amount%§f 将用于群组 §e%group%§f 的领地成本。"
+chunk-cost-multiplier-must-be-positive: "§c区块成本乘数必须为正数。"
+chunk-cost-multiplier-must-be-number: "§c区块成本乘数必须是数字。"
+set-player-chunk-cost-multiplier-success: "§f乘数 §e%amount%§f 将用于 §e%player%§f 的区块成本。"
+set-group-chunk-cost-multiplier-success: "§f乘数 §e%amount%§f 将用于群组 §e%group%§f 的区块成本。"
+automap-on: "§f自动地图已开启。"
+automap-off: "§f自动地图已关闭。"
+player-has-no-claim: "§c您没有任何领地。"
+player-never-played: "§c玩家 '%player%' 从未在此服务器上玩过。"
+cant-add-yourself: "§c您不能添加自己。"
+claim-for-sale-success-broadcast: "§e%player%§f 将他们的领地 §e%name%§f 以 §e%price%%money-symbol%§f 的价格出售。"
+claim-name-too-long: "§c此名称太长。"
+claim-description-too-long: "§c此描述太长。"
+player-not-online: "§c玩家 '%player%' 不在线。"
+cant-buy-your-own-claim: "§c您不能购买自己的领地。"
+claim-name-length-must-be-positive: "§c领地名称长度必须为正数。"
+claim-name-length-must-be-number: "领地名称长度必须是数字。"
+claim-description-length-must-be-positive: "§c领地描述长度必须为正数。"
+claim-description-length-must-be-number: "§c领地描述长度必须是数字。"
+set-max-length-claim-name-success: "§f领地名称长度现在为 §e%amount% 字符§f。"
+set-max-length-claim-description-success: "§f领地描述长度现在为 §e%amount% 字符§f。"
+player-does-not-have-claim: "§c此玩家没有领地。"
+player-teleport-to-other-claim-aclaim: "§f您已被传送到 §e%player%§f 的领地 §e%name%§f。"
+player-unclaim-other-claim-aclaim: "§f您已删除 §e%player%§f 的领地 §e%name%§f。"
+player-claim-unclaimed-by-admin: "§f您的领地 §e%name%§f 已被 §c%player%§f 删除。"
+player-unclaim-other-all-claim-aclaim: "§f您已删除 §e%player%§f §e所有的领地§f。"
+player-all-claim-unclaimed-by-admin: "§e您的所有领地§f 已被 §c%player%§f 删除。"
+player-banned: "§c您已被禁止进入此领地"
+cant-ban-yourself: "§c您不能禁止自己。"
+add-ban-success: "§e%player%§f 现在被禁止进入领地 §e%claim-name%§f。"
+add-ban-all-success: "§e%player%§f 现在被禁止进入您的所有领地。"
+remove-ban-success: "§e%player%§f 现在可以进入领地 §e%claim-name%§f。"
+remove-ban-all-success: "§e%player%§f 现在可以进入您的所有领地。"
+not-banned: "§c%player% 未被禁止进入此领地。"
+already-banned: "§c%player% 已被禁止进入此领地。"
+automap-world-disabled: "§c在世界 '%world%' 中自动地图已禁用。自动地图已关闭。"
+autoclaim-world-disabled: "§c在世界 '%world%' 中自动认领已禁用。自动认领已关闭。"
+autounclaim-world-disabled: "§c在世界 '%world%' 中自动取消认领已禁用。自动取消认领已关闭。"
+autodelchunk-world-disabled: "§c在世界 '%world%' 中自动删除区块已禁用。自动删除区块已关闭。"
+autoaddchunk-world-disabled: "§c在世界 '%world%' 中自动添加区块已禁用。自动添加区块已关闭。"
+no-admin-claim: "§c没有保护区。"
+remove-all-claim-player: "§c%owner%§f 将您从 §c所有他们的领地§f 中移除。"
+remove-claim-player: "§c%owner%§f 将您从他们的领地 §c%claim-name%§f 中移除。"
+add-all-claim-player: "§a%owner%§f 将您添加到 §a所有他们的领地§f 中。"
+add-claim-player: "§a%owner%§f 将您添加到他们的领地 §a%claim-name%§f 中。"
+remove-all-claim-protected-area-player: "§f您已从 §c所有保护区§f 中被移除。"
+remove-claim-protected-area-player: "§f您已从保护区 §c%claim-name%§f 中被移除。"
+add-all-claim-protected-area-player: "§f您已被添加到 §a所有保护区§f 中。"
+add-claim-protected-area-player: "§f您已被添加到保护区 §a%claim-name%§f 中。"
+cant-transfer-ownership-yourself: "§c您不能将所有权转移给自己。"
+fly-disabled-on-this-server: "§c此服务器上的领地飞行已禁用。"
+fly-enabled: "§f飞行已开启。"
+fly-disabled: "§f飞行已关闭。"
+autofly-enabled: "§f自动飞行已开启。"
+autofly-disabled: "§f自动飞行已关闭。"
+cant-fly-in-this-claim: "§c您不能在此领地内飞行。"
+reset-of-player-claims-settings-successful: "§e所有玩家领地的所有设置§f 已重置。"
+reset-of-admin-claims-settings-successful: "§e所有保护区的所有设置§f 已重置。"
+claims-are-now-merged: "§f领地现在已 §d合并§f 为一个 §e%claim-name%§f。"
+cant-merge-same-claim: "§c您不能合并同一个领地。"
+cant-claim-with-so-many-chunks: "§c您不能用这么多区块创建领地。"
+cant-claim-with-so-many-chunks-other: "§c%player% 不能用这么多区块创建领地。"
+apply-all-settings-success-aclaim: "§e设置§f 已应用到§e §e%player%§f 的§e 所有领地§f。"
+remove-member-success-aclaim: "§e%player%§f 已从 §e%owner%§f 的领地 §e%claim-name%§f 中成功移除。"
+remove-ban-success-aclaim: "§e%player%§f 现在可以进入 §e%owner%§f 的领地 §e%claim-name%§f。"
+claim-in-sale-cancel-aclaim: "§f§e%player%§f 的领地 §e%name%§f 不再出售。"
+protected-area-title: "保护区"
+all-your-claims-title: "您的所有领地"
+banned-all-claim-protected-area-player: "§f您已被禁止进入 §c所有保护区§f。"
+banned-all-claim-player: "§c%owner%§f 禁止您进入 §c所有他们的领地§f。"
+unbanned-all-claim-protected-area-player: "§f您已被允许进入 §a所有保护区§f。"
+unbanned-all-claim-player: "§a%owner%§f 允许您进入 §a所有他们的领地§f。"
+unbanned-claim-player: "§a%owner%§f 允许您进入他们的领地 §a%claim-name%§f。"
+banned-claim-protected-area-player: "§f您已被禁止进入保护区 §c%claim-name%§f。"
+banned-claim-player: "§c%owner%§f 禁止您进入他们的领地 §c%claim-name%§f。"
+unbanned-claim-protected-area-player: "§f您已被允许进入保护区 §a%claim-name%§f。"
+chunks-must-be-from-same-world: "§c领地必须来自同一个世界。"
+vault-required: "§c您需要 Vault 插件来设置经济系统。"
+money-symbol: "$"
+delete-claim-protected-area: "§a保护区删除成功。"
+delete-claim-all-protected-areas: "§a所有保护区删除成功。"
+delete-chunk-success: "§a区块 §f%chunk% §a已成功从 §f%claim-name%§a 中删除。"
+cannot-remove-only-remaining-chunk-gui: "§c您不能移除唯一剩余的区块"
+cannot-remove-only-remaining-chunk: "§c您不能移除唯一剩余的区块。"
+world-does-not-exist: "§c此世界不存在。"
+error-delete-chunk: "§c发生错误，请检查区块的世界和坐标。否则请联系管理员。"
+one-chunk-must-be-adjacent: "§c至少有一个区块必须与新区块相邻。"
+one-chunk-of-claim-must-be-adjacent: "§c新领地的至少一个区块必须与目标领地的一个区块相邻。"
+add-chunk-already-owner: |
+  §f这已经是您的一个领地。
+  §f使用 §d/claim merge %claim-name% %claim-name-1%§f 来合并它们。
+add-chunk-not-owner: "§c此区块已属于一个领地。"
+add-chunk-already-in-claim: "§c此区块已属于您的领地 '%claim-name%'。"
+add-chunk-successful: "§f区块 §a%chunk%§f 已添加到 §e%claim-name%§f。"
+add-chunk-already-owner-protected-area: |
+  §f这已经是一个保护区。
+  §f使用 §d/parea merge %claim-name% %claim-name-1%§f 来合并它们。
+add-chunk-already-in-claim-protected-area: "§c此区块已属于保护区 '%claim-name%'。"
+chunk-are-loading: "§f正在计算和加载 §b%chunks-count% 个区块§f.."
+chunk-while-loading: "§f已加载区块：§a%loaded-chunks%§2/%chunks-count%§f。"
+griefprevention-needed: "§c您需要 GriefPrevention 来从该插件导入领地。"
+xclaims-needed: "§c您需要将 XClaims 的领地文件复制到 plugins/SimpleClaimSystem/ 文件夹中。"
+player-not-in-the-claim: "§c玩家 '%player%' 不在您的领地 %claim-name% 中。"
+player-not-in-the-protected-area: "§c玩家 '%player%' 不在保护区 %claim-name% 中。"
+kicked-from-claim: "§f您已被从 §c%player%§f 的领地 §c%claim-name%§f 中踢出。"
+kicked-from-protected-area: "§f您已被从保护区 §c%claim-name%§f 中踢出。"
+kick-success: "§f您已将 §e%player%§f 从您的领地 §e%claim-name%§f 中踢出。"
+kick-success-protected-area: "§f您已将 §e%player%§f 从保护区 §e%claim-name%§f 中踢出"
+can-not-kick-yourself: "§c您不能踢出自己。"
+player-not-in-any-claim: "§c玩家 '%player%' 不在您的任何领地中。"
+player-not-in-any-protected-areas: "§c玩家 '%player%' 不在任何保护区中。"
+kick-success-all-claims: "§f您已将 §e%player%§f 从 §e所有您的领地§f 中踢出。"
+kicked-from-all-claims: "§f您已被从 §c%player%§f §c所有的领地§f 中踢出。"
+kick-success-all-protected-areas: "§f您已将 §e%player%§f 从 §e所有保护区§f 中踢出。"
+kicked-from-all-protected-areas: "§f您已被从 §c所有保护区§c 中踢出。"
+cannot-claim-because-claim-near: "§c您不能创建领地，因为附近有领地。"
+set-player-max-chunks-total-success: "§e%player%§f 总共可以拥有 §e%amount%§f 个区块。"
+max-chunks-total-must-be-positive: "§c总区块限制必须为正数。"
+max-chunks-total-must-be-number: "§c总区块限制必须是数字。"
+set-player-claim-distance-success: "§e%player%§f 可以在 §e%amount%§f 个区块的距离内创建领地。"
+claim-distance-must-be-positive: "§c领地距离必须为正数。"
+claim-distance-must-be-number: "§c领地距离必须是数字。"
+set-group-max-chunks-total-success: "§e%group%§f 总共可以拥有 §e%amount%§f 个区块。"
+set-group-claim-distance-success: "§e%group%§f 可以在 §e%amount%§f 个区块的距离内创建领地。"
+can-not-buy-your-own-claim: "§c您不能购买自己的领地。"
+claim-already-in-sale: "§c此领地已在出售。"
+no-claim-can-be-merged: "§c没有可以合并的领地。"
+player-invite-other-player: "§e%sender%§f 向您发送了加入 §e%claim-name%§f 的邀请"
+player-invite-other: "§a邀请已发送给 %player%。"
+player-already-invite-other: |
+  §c您已经向 %player% 发送了邀请。
+  §c使用 /claim cancelinv %player% 来取消旧邀请。
+player-invite-accept-button: "§a[接受]"
+player-invite-deny-button: "§c[拒绝]"
+player-invite-accept-button-hover: "§a点击接受"
+player-invite-deny-button-hover: "§c点击拒绝"
+player-accept-invitation: "§a您接受了邀请。"
+player-cancel-invitation: "§c您取消了对 %player% 的邀请。"
+player-deny-invitation: "§c您拒绝了邀请。"
+player-accept-invitation-other: "§a%player%§f 接受了邀请。"
+player-deny-invitation-other: "§c%player%§f 拒绝了邀请。"
+player-no-invitation: "§c%player% 没有邀请您。"
+player-do-not-invite: "§c您没有邀请 %player%。"
+player-invitation-expired: "§c您对 %player% 的邀请已过期。"
+player-invitation-expired-other: "§c%player% 的邀请已过期。"
+player-invitation-all-their-claims: "所有他们的领地"
+player-invitations-system-off: "§c此服务器上的邀请系统已禁用。"
+expulsion-set: "§a驱逐位置已设置。"
+x-z-must-be-integer: "§cX 和 Z 必须是有效的整数。"
+one-chunk-must-be-adjacent-delchunk: "§c您不能删除此区块，因为它连接了同一领地的其他区块。"
+chunk-not-in-claim: "§c此区块不是此领地的一部分。"
+chunks-are-not-connected-delchunk: "§c您不能移除此区块，因为它会将领地分成两部分。"
+delchunk-bad-format: "§c区块格式应为 <世界>;<x>;<z>。"
+
+
+# > 格式化数字
+
+formatted-1000: "k"
+formatted-1000000: "m"
+formatted-1000000000: "M"
+formatted-1000000000000: "b"
+formatted-1000000000000000: "B"
+formatted-1000000000000000000: "t"
+formatted-1000000000000000000000: "T"
+
+
+# > 拒绝消息
+
+destroy: "§c您不能在此领地内破坏"
+build: "§c您不能在此领地内建造"
+buttons: "§c您不能在此领地内使用按钮"
+trapdoors: "§c您不能在此领地内使用活板门"
+doors: "§c您不能在此领地内使用门"
+fencegates: "§c您不能在此领地内使用栅栏门"
+levers: "§c您不能在此领地内使用拉杆"
+repeaters: "§c您不能在此领地内使用中继器"
+comparators: "§c您不能在此领地内使用比较器"
+bells: "§c您不能在此领地内使用钟"
+interactblocks: "§c您不能在此领地内与此互动"
+items: "§c您不能在此领地内使用此物品"
+plates: "§c您不能在此领地内使用压力板"
+tripwires: "§c您不能在此领地内触发绊线"
+entities: "§c您不能与此实体互动"
+damages: "§c您不能在此领地内造成伤害"
+teleportations: "§c您不能传送到此领地"
+enter: "§c您不能进入此领地"
+guit eleport: "§c您不能传送到此领地"
+portals: "§c您不能在此领地内使用传送门"
+itemspickup: "§c您不能在此领地内拾取物品"
+itemsdrop: "§c您不能在此领地内丢弃物品"
+pvp: "§c您不能在此领地内进行 PvP"
+elytra: "§c您不能在此领地内使用鞘翅。"
+specialblocks: "§c您不能在此领地内破坏此方块。"
+windcharges: "§c您不能在此领地内使用风之充能。"
+frostwalker: "§c您不能在此领地内冻结水。"
+claim-fly-disabled-on-damage: "§c因为您受到伤害，领地飞行已禁用"
+destroy-mode: "§c您不能在您的领地外破坏方块。"
+build-mode: "§c您不能在您的领地外建造。"
+buttons-mode: "§c您不能在您的领地外使用按钮。"
+trapdoors-mode: "§c您不能在您的领地外使用活板门。"
+doors-mode: "§c您不能在您的领地外使用门。"
+fencegates-mode: "§c您不能在您的领地外使用栅栏门。"
+levers-mode: "§c您不能在您的领地外使用拉杆。"
+repeaters-mode: "§c您不能在您的领地外使用红石中继器。"
+comparators-mode: "§c您不能在您的领地外使用红石比较器。"
+bells-mode: "§c您不能在您的领地外敲钟。"
+interactblocks-mode: "§c您不能在您的领地外与方块互动。"
+items-mode: "§c您不能在您的领地外使用此物品。"
+plates-mode: "§c您不能在您的领地外踩压力板。"
+tripwires-mode: "§c您不能在您的领地外触发绊线。"
+entities-mode: "§c您不能在您的领地外与实体互动。"
+damages-mode: "§c您不能在您的领地外造成伤害。"
+teleportations-mode: "§c您不能在您的领地外传送。"
+portals-mode: "§c您不能在您的领地外使用传送门。"
+itemspickup-mode: "§c您不能在您的领地外拾取物品。"
+itemsdrop-mode: "§c您不能在您的领地外丢弃物品。"
+pvp-mode: "§c您不能在您的领地外进行 PvP。"
+elytra-mode: "§c您不能在您的领地外使用鞘翅。"
+specialblocks-mode: "§c您不能在您的领地外破坏此方块。"
+windcharges-mode: "§c您不能在您的领地外使用风之充能。"
+frostwalker-mode: "§c您不能在您的领地外冻结水。"
+
+
+# > 进入/离开消息
+# 使用 %owner% 表示所有者名称
+# 使用 %player% 表示玩家名称
+# 使用 %name% 表示领地名称
+
+enter-protected-area: "§f您进入了一个 §e保护区"
+enter-protected-area-for-sale: "§f您进入了一个 §e保护区§f - §6§l 待售 §b/claim buy §a(%price%%money-symbol%)"
+leave-protected-area: "§f您离开了一个 §e保护区"
+
+enter-territory: "§f您进入了 §e%owner%§f 的领地"
+enter-territory-for-sale: "§f您进入了 §e%owner%§f 的领地 - §6§l待售 §b/claim buy §a(%price%%money-symbol%)"
+leave-territory: "§f您离开了 §e%owner%§f 的领地"
+
+enter-protected-area-title: ""
+enter-protected-area-subtitle: "§f您进入了一个 §e保护区"
+enter-protected-area-for-sale-title: "§6§l待售"
+enter-protected-area-for-sale-subtitle: "§f您进入了一个 §e保护区§f - §b/claim buy §a(%price%%money-symbol%)"
+leave-protected-area-title: ""
+leave-protected-area-subtitle: "§f您离开了一个 §e保护区"
+
+enter-territory-title: "§e%owner%"
+enter-territory-subtitle: "§f您进入了领地"
+enter-territory-for-sale-title: "§e%owner%"
+enter-territory-for-sale-subtitle: "§f领地 §6§l待售 §b/claim buy §a(%price%%money-symbol%)"
+leave-territory-title: "§e%owner%"
+leave-territory-subtitle: "§f您离开了领地"
+
+enter-protected-area-chat: "§f您进入了一个 §e保护区§f。"
+enter-protected-area-for-sale-chat: |
+  §f您进入了一个 §e保护区§f。
+  §6§l待售 §b/claim buy §a(%price%%money-symbol%)
+leave-protected-area-chat: "§f您离开了一个 §e保护区§f。"
+
+enter-territory-chat: "§f您进入了 §e%owner%§f 的领地。"
+enter-territory-for-sale-chat: |
+  §f您进入了 §e%owner%§f 的领地。
+  §f此领地 §6§l待售 §b/claim buy §a(%price%%money-symbol%)
+leave-territory-chat: "§f您离开了 §e%owner%§f 的领地。"
+
+
+# > 界面消息
+# 仅对 lore 消息使用 \n 换行
+
+gui-unclaim-confirm-title: "§4确认取消认领？"
+gui-claim-confirm-title: "§2确认认领？"
+gui-chunk-confirm-title: "§2确认添加区块？"
+gui-bans-title: "§9%name%§8: 禁止 (第 %page% 页)"
+gui-chunks-title: "§9%name%§8: 区块 (第 %page% 页)"
+gui-list-title: "我的领地 (第 %page% 页)"
+gui-main-title: "§9%name%§8: 主页"
+gui-members-title: "§9%name%§8: 成员 (第 %page% 页)"
+gui-settings-new-title: "§9%name%§8: 设置 (%role%)"
+gui-claims-title: "领地 (第 %page% 页)"
+gui-claims-owner-title: "领地: %owner% (第 %page% 页)"
+
+gui-button-no-permission: "§c您没有权限"
+
+empty-glass: "§c "
+
+to-unban: " 以解除禁止"
+to-remove-chunk: " 以移除此区块"
+to-teleport: " 以传送"
+to-remove: " 以移除"
+to-manage: " 以管理"
+to-remove-member: " 以移除此成员"
+to-use-setting: " 以使用此设置"
+to-buy: " 以购买"
+
+confirm-title: "§a确认"
+cancel-title: "§c取消"
+unclaim-confirm-info-title: "§e信息"
+unclaim-confirm-info-lore: "§7▸ §f为此领地做出选择"
+claim-confirm-info-title: "§e信息"
+claim-confirm-info-lore: "§7价格: §6%price%%money-symbol%\n \n§7▸ §f为此领地做出选择"
+chunk-confirm-info-title: "§e信息"
+chunk-confirm-info-lore: "§7价格: §6%price%%money-symbol%\n \n§7▸ §f为此领地做出选择"
+
+owner-claim-title: "§e%owner%"
+owner-claim-lore: "§7领地: §b%claim-amount%"
+owner-claim-access: "§7▸ §f显示他们的领地"
+
+access-all-claim-title: "§e%name% §b(属于 %owner% 的领地)"
+access-all-claim-lore: "§7%description%\n \n§7成员:\n%members%\n \n"
+access-all-claim-lore-deny-visitors: "§c此领地不允许访客"
+access-all-claim-lore-allow-visitors: "§7▸ §f左键点击传送"
+all-claim-buyable-price: "§7此领地待售！\n§7价格: §6%price%%money-symbol%\n \n" # 仅在出售时可见
+all-claim-is-buyable: "§7▸ §fShift+左键点击购买" # 仅在出售时可见
+
+access-claim-title: "§e%name% §b(%coords%)"
+access-claim-lore: "§7%description%\n \n§7成员:\n%members%\n \n§7被禁止的玩家:\n%bans%\n \n"
+access-claim-not-owner-lore: "§7所有者: §4%owner%\n§7%description%\n \n§7成员:\n%members%\n \n§7被禁止的玩家:\n%bans%\n \n"
+
+access-claim-clickable-tp: "§7▸ §f左键点击传送"
+access-claim-clickable-remove: "§7▸ §fShift+左键点击移除"
+access-claim-clickable-manage: "§7▸ §f右键点击管理"
+access-claim-clickable-removemember: "§7▸ §f移除此成员"
+access-claim-clickable-removechunk: "§7▸ §f移除此区块"
+
+teleportation-success: "§f您已被传送到领地的重生点。"
+claim-list-no-member: "§8无成员"
+claim-list-no-ban: "§8无被禁止的玩家"
+my-claims-buyable-price: "§7您的领地待售！\n§7价格: §6%price%%money-symbol%\n \n" # 仅在出售时可见
+
+territory-access-lore-new: "§7可以访问您的领地"
+player-banned-lore: "§7被禁止进入您的领地"
+unban-this-player-button: "§7▸§f 解除此玩家的禁止"
+player-member-title: "§e%player%"
+player-ban-title: "§4%player%"
+owner-territory-lore: "§d领地所有者"
+
+previous-page-title: "§e上一页"
+previous-page-lore: "§7前往第 %page% 页\n§7▸ §f点击访问"
+
+next-page-title: "§e下一页"
+next-page-lore: "§7前往第 %page% 页\n§7▸ §f点击访问"
+
+previous-page-claims-lore: "§7返回领地列表"
+
+back-page-main-title: "§6主页"
+back-page-main-lore: "§7返回 %claim-name% 的主菜单\n§7▸ §f点击访问"
+
+status-disabled: "§c已禁用 ✘"
+status-enabled: "§a已启用 ✔"
+choice-disabled: "§7▸ §f点击 §n启用"
+choice-enabled: "§7▸ §f点击 §n禁用"
+choice-setting-disabled: "§c此设置无法修改"
+
+apply-all-claims-title: "§e应用设置到所有领地"
+apply-all-claims-lore: "§7将这些设置应用到我所有的领地\n§7▸ §f点击执行"
+
+build-title: "§e建造 §7(%status%§7)"
+build-lore: "§7允许建造"
+
+destroy-title: "§e破坏 §7(%status%§7)"
+destroy-lore: "§7允许破坏"
+
+buttons-title: "§e使用按钮 §7(%status%§7)"
+buttons-lore: "§7允许使用按钮"
+
+items-title: "§e使用物品 §7(%status%§7)"
+items-lore: "§7允许使用物品"
+
+interactblocks-title: "§e与方块互动 §7(%status%§7)"
+interactblocks-lore: "§7允许与方块互动 (箱子等)"
+
+levers-title: "§e使用拉杆 §7(%status%§7)"
+levers-lore: "§7允许使用拉杆"
+
+plates-title: "§e使用压力板 §7(%status%§7)"
+plates-lore: "§7允许使用压力板"
+
+doors-title: "§e开门 §7(%status%§7)"
+doors-lore: "§7允许开门"
+
+trapdoors-title: "§e开活板门 §7(%status%§7)"
+trapdoors-lore: "§7允许开活板门"
+
+fencegates-title: "§e开栅栏门 §7(%status%§7)"
+fencegates-lore: "§7允许开栅栏门"
+
+tripwires-title: "§e触发绊线 §7(%status%§7)"
+tripwires-lore: "§7允许触发绊线"
+
+repeaterscomparators-title: "§e使用中继器/比较器 §7(%status%§7)"
+repeaterscomparators-lore: "§7允许使用中继器/比较器"
+
+bells-title: "§e使用钟 §7(%status%§7)"
+bells-lore: "§7允许使用钟"
+
+entities-title: "§e与实体互动 §7(%status%§7)"
+entities-lore: "§7允许与实体互动"
+
+explosions-title: "§e爆炸 §7(%status%§7)"
+explosions-lore: "§7允许任何类型的爆炸"
+
+liquids-title: "§e液体 §7(%status%§7)"
+liquids-lore: "§7外部液体是否可以流入领地"
+
+redstone-title: "§e红石 §7(%status%§7)"
+redstone-lore: "§7外部红石是否可以影响领地\n§7(活塞、发射器等)。"
+
+frostwalker-title: "§e冰霜行者 §7(%status%§7)"
+frostwalker-lore: "§7访客是否可以用附魔冻结水"
+
+firespread-title: "§e火焰蔓延 §7(%status%§7)"
+firespread-lore: "§7火焰是否可以在领地内蔓延"
+
+teleportations-title: "§e自然传送 §7(%status%§7)"
+teleportations-lore: "§7允许自然传送 (末影珍珠,\n§7紫颂果等)"
+
+damages-title: "§e实体伤害 §7(%status%§7)"
+damages-lore: "§7允许对实体造成伤害"
+
+pvp-title: "§ePvP §7(%status%§7)"
+pvp-lore: "§7允许玩家进行 PvP"
+
+monsters-title: "§e怪物 §7(%status%§7)"
+monsters-lore: "§7允许生成怪物"
+
+weather-title: "§e天气 §7(%status%§7)"
+weather-lore: "§7允许玩家看到下雨/下雪/打雷"
+
+fly-title: "§e飞行 §7(%status%§7)"
+fly-lore: "§7允许飞行"
+
+guit eleport-title: "§e通过界面传送 §7(%status%§7)"
+guit eleport-lore: "§7允许使用 /claims 传送"
+
+enter-title: "§e进入 §7(%status%§7)"
+enter-lore: "§7允许物理进入领地"
+
+portals-title: "§e使用传送门 §7(%status%§7)"
+portals-lore: "§7允许使用传送门"
+
+itemspickup-title: "§e拾取物品 §7(%status%§7)"
+itemspickup-lore: "§7允许拾取地面上的物品"
+
+itemsdrop-title: "§e丢弃物品 §7(%status%§7)"
+itemsdrop-lore: "§7允许在地面上丢弃物品"
+
+elytra-title: "§e鞘翅 §7(%status%§7)"
+elytra-lore: "§7允许使用鞘翅"
+
+specialblocks-title: "§e破坏特殊方块 §7(%status%§7)"
+specialblocks-lore: "§7允许破坏特殊方块"
+
+windcharges-title: "§e使用风之充能 §7(%status%§7)"
+windcharges-lore: "§7允许使用风之充能"
+
+manage-members-title: "§f成员"
+manage-members-lore: "§7管理成员"
+
+manage-bans-title: "§f禁止"
+manage-bans-lore: "§7管理被禁止的玩家"
+
+manage-chunks-title: "§f区块"
+manage-chunks-lore: "§7管理区块"
+
+manage-settings-title: "§f设置"
+manage-settings-lore: "§7管理设置"
+
+list-title: "§f列表"
+list-lore: "§7前往我的领地列表"
+
+main-title: "§f主页"
+main-lore: "§7前往主页"
+
+unclaim-title: "§f取消认领"
+unclaim-lore: "§7删除此领地？"
+
+teleport-claim-title: "§f传送"
+teleport-claim-lore: "§7传送到领地的重生点"
+
+claim-info-title-main: "§b%claim-name%"
+claim-info-lore-main: |
+  §7描述 :
+  §7%description%
+  §7
+  §7区块: §b%chunks-count%
+  §7成员: §a%members-count%
+  §7禁止: §c%bans-count%
+  §7
+  §7%sale-status%
+  
+claim-info-lore-sale-status-true: "§a✔ 领地待售 §7(%price%%money-symbol%)"
+claim-info-lore-sale-status-false: "§c✘ 领地未出售"
+  
+chunk-title: "§6区块 §7(%coords%)"
+chunk-lore: "§7此区块是领地的一部分"
+
+access-button: "§7▸ §f点击执行"
+
+filter-title: "§e筛选"
+filter-new-lore: "§7更改筛选\n%status_color_1%➲ 所有所有者\n%status_color_2%➲ 有领地待售的所有者\n%status_color_3%➲ 在线所有者\n%status_color_4%➲ 离线所有者\n§7▸ §f点击更改"
+filter-owner-lore: "§7更改筛选\n%status_color_1%➲ 所有领地\n%status_color_2%➲ 待售领地\n§7▸ §f点击更改"
+filter-list-lore: "§7更改筛选\n%status_color_1%➲ 我的领地\n%status_color_2%➲ 成员领地\n§7▸ §f点击更改"
+status_color_active_filter: "§a"
+status_color_inactive_filter: "§8"
+
+role-title: "§e角色"
+role-lore: "§7更改目标角色\n%status_color_1%➲ 访客\n%status_color_2%➲ 成员\n%status_color_3%➲ 自然\n§7▸ §f点击更改"
+role-members: "成员"
+role-visitors: "访客"
+role-natural: "自然"
+
+
+# > 占位符消息
+
+claim_name-if-no-claim: "§c无领地"
+claim_owner-if-no-claim: "§c无"
+claim_player-if-no-claim: "§c无"
+claim_player-if-visitor: "§7访客"
+claim_player-if-member: "§a成员"
+claim_player-if-owner: "§c所有者"
+claim_description-if-no-claim: "§c无"
+claim_sale_price-if-no-claim: "§c无"
+claim_is_in_sale-if-no-claim: "§c无"
+claim_sale_price-if-not-in-sale: "§c未出售"
+claim_members_count-if-no-claim: "0"
+claim_members_online-if-no-claim: "0"
+claim_spawn-if-no-claim: "§c无"
+claim_setting-if-no-claim: "§c无"
+claim_distance-if-zero: "§c无"
+
+
+# > 地图消息
+
+map-coords-message: "§7坐标: %coords% (%direction%)"
+map-actual-claim-name-message: "§b%name%"
+map-actual-claim-name-message-owner: "§7(§4%owner%§7)"
+map-no-claim-name-message: "§c无领地"
+map-claim-relation-member: "§a"
+map-claim-relation-visitor: "§7"
+map-no-claim-color: "§f"
+map-cursor: "⬛"
+map-cursor-color: "§6"
+map-symbol-no-claim: "⬛"
+map-symbol-claim: "⬛"
+map-direction-south: "南"
+map-direction-north: "北"
+map-direction-east: "东"
+map-direction-west: "西"
+map-legend-you: "%cursor-color%⬛ 您"
+map-legend-free: "%no-claim-color%⬛ 空闲领地"
+map-legend-yours: "%claim-relation-member%⬛ 您的领地"
+map-legend-other: "%claim-relation-visitor%⬛ 他人领地"
+
+
+# > 领地消息
+
+default-description: "§7无描述"
+
+
+# > 帮助消息
+
+help-separator: "§e§m                                                                      "
+  
+help-command:
+  claim-claim: |
+    §b语法 : §f/claim [<radius>]
+    §b描述 : §f认领一些区块
+  claim-see: |
+    §b语法 : §f/claim see [<player>]
+    §b描述 : §f在您所在的区块/玩家的领地周围显示粒子
+  claim-list: |
+    §b语法 : §f/claim list
+    §b描述 : §f打开包含您的领地列表的界面
+  claim-members: |
+    §b语法 : §f/claim members [<claim-name>]
+    §b描述 : §f打开包含您所在领地/指定领地成员的界面
+  claim-settings: |
+    §b语法 : §f/claim settings [<claim-name>]
+    §b描述 : §f打开包含您所在领地/指定领地设置的界面
+  claim-setspawn: |
+    §b语法 : §f/claim setspawn
+    §b描述 : §f定义您所在领地的新重生点
+  claim-autoclaim: |
+    §b语法 : §f/claim autoclaim
+    §b描述 : §f启用或禁用更改区块时的自动认领
+  claim-automap: |
+    §b语法 : §f/claim map/automap
+    §b描述 : §f查看领地地图 / 更改区块时自动显示
+  claim-autofly: |
+    §b语法 : §f/claim fly/autofly
+    §b描述 : §f启用领地飞行 / 更改区块时自动启用
+  claim-tp: |
+    §b语法 : §f/claim tp <claim-name>
+    §b描述 : §f传送到您的一个领地
+  claim-setname: |
+    §b语法 : §f/claim setname <old-claim-name> <new-claim-name>
+    §b描述 : §f更改指定领地的名称
+  claim-add: |
+    §b语法 : §f/claim add [<*|claim-name>] <player>
+    §b描述 : §f将玩家添加到领地/您的所有领地
+  claim-remove: |
+    §b语法 : §f/claim remove [<*|claim-name>] <player>
+    §b描述 : §f将玩家从领地/您的所有领地中移除
+  claim-setdesc: |
+    §b语法 : §f/claim setdesc <claim-name> <description>
+    §b描述 : §f更改指定领地的描述
+  claim-chat: |
+    §b语法 : §f/claim chat <claim-name>
+    §b描述 : §f更改您的聊天模式
+  claim-ban: |
+    §b语法 : §f/claim ban [<*|claim-name>] <player>
+    §b描述 : §f禁止玩家进入您的领地
+  claim-unban: |
+    §b语法 : §f/claim unban [<*|claim-name>] <player>
+    §b描述 : §f解除玩家进入您领地的禁止
+  claim-bans: |
+    §b语法 : §f/claim bans [<claim-name>]
+    §b描述 : §f打开领地的禁止界面
+  claim-owner: |
+    §b语法 : §f/claim owner [<*|claim-name>] <player>
+    §b描述 : §f将领地所有权转移给玩家
+  claim-merge: |
+    §b语法 : §f/claim merge <claim-name-1> <claim-name-2>
+    §b描述 : §f将两个领地合并为一个
+  claim-sell: |
+    §b语法 : §f/claim sell <claim-name> <price>
+    §b描述 : §f将领地出售
+  claim-cancel: |
+    §b语法 : §f/claim cancel <claim-name>
+    §b描述 : §f取消指定领地的出售
+  claim-kick: |
+    §b语法 : §f/claim kick [<*|claim-name>] <player>
+    §b描述 : §f将玩家从领地中踢出
+  claim-addchunk: |
+    §b语法 : §f/claim addchunk <claim-name>
+    §b描述 : §f向领地添加区块
+  claim-delchunk: |
+    §b语法 : §f/claim delchunk <claim-name> <chunk>
+    §b描述 : §f从领地中移除区块，使用区块参数格式为 world;x;z
+  claim-main: |
+    §b语法 : §f/claim main <claim-name>
+    §b描述 : §f打开领地的主菜单
+  claim-cancelinv: |
+    §b语法 : §f/claim cancelinv <player>
+    §b描述 : §f取消对玩家的邀请
+  claim-accept: |
+    §b语法 : §f/claim accept <player>
+    §b描述 : §f接受玩家的邀请
+  claim-deny: |
+    §b语法 : §f/claim deny <player>
+    §b描述 : §f拒绝玩家的邀请
+  unclaim-unclaim: |
+    %help-separator%
+    §b语法 : §f/unclaim [<claim-name|*>]
+    §b描述 :§f 取消认领一些区块
+    %help-separator%
+  claims-claims: |
+    §b语法 : §f/claims
+    §b描述 : §f打开包含所有领地的界面
+  parea-setdesc: |
+    §b语法 : §f/parea setdesc <claim_name> <description>
+    §b描述 : §f设置保护区的描述
+  parea-settings: |
+    §b语法 : §f/parea settings <claim_name>
+    §b描述 : §f打开保护区的设置界面
+  parea-setname: |
+    §b语法 : §f/parea setname <claim_name> <new_name>
+    §b描述 : §f设置保护区的名称
+  parea-members: |
+    §b语法 : §f/parea members <claim_name>
+    §b描述 : §f管理保护区的成员
+  parea-tp: |
+    §b语法 : §f/parea tp <claim_name>
+    §b描述 : §f传送到保护区
+  parea-list: |
+    §b语法 : §f/parea list
+    §b描述 : §f列出所有保护区
+  parea-ban: |
+    §b语法 : §f/parea ban <claim_name> <player>
+    §b描述 : §f禁止玩家进入保护区
+  parea-unban: |
+    §b语法 : §f/parea unban <claim_name> <player>
+    §b描述 : §f解除玩家进入保护区的禁止
+  parea-bans: |
+    §b语法 : §f/parea bans <claim_name>
+    §b描述 : §f列出保护区中所有被禁止的玩家
+  parea-add: |
+    §b语法 : §f/parea add <claim_name> <player>
+    §b描述 : §f将玩家添加到保护区
+  parea-remove: |
+    §b语法 : §f/parea remove <claim_name> <player>
+    §b描述 : §f将玩家从保护区中移除
+  parea-unclaim: |
+    §b语法 : §f/parea unclaim <claim_name>
+    §b描述 : §f取消认领保护区
+  parea-main: |
+    §b语法 : §f/parea main
+    §b描述 : §f打开主界面
+  parea-merge: |
+    §b语法 : §f/parea merge <claim1> <claim2>
+    §b描述 : §f合并两个保护区
+  parea-addchunk: |
+    §b语法 : §f/parea addchunk <claim_name> <chunk>
+    §b描述 : §f向保护区添加区块
+  parea-delchunk: |
+    §b语法 : §f/parea delchunk <claim_name> <chunk>
+    §b描述 : §f从保护区中移除区块
+  parea-kick: |
+    §b语法 : §f/parea kick <*|claim-name> <player>
+    §b描述 : §f将玩家从保护区中踢出
+  scs-transfer: |
+    §b语法 : §f/scs transfer
+    §b描述 : §f将本地数据库转移到远程数据库
+  scs-player: |
+    §b语法 : §f/scs player <tp|unclaim|main|list> <player> [<claim>]
+    §b描述 : §f管理玩家领地
+  scs-cplayer: |
+    §b语法 : §f/scs cplayer <add-limit|add-radius|add-members|set-limit|set-radius|set-delay|set-members|set-claim-cost|set-claim-cost-multiplier|set-claim-distance|set-max-chunks-total> <args>
+    §b描述 : §f管理玩家设置
+  scs-group: |
+    §b语法 : §f/scs group <add-limit|add-radius|add-members|set-limit|set-radius|set-delay|set-members|set-claim-cost|set-claim-cost-multiplier|set-claim-distance|set-max-chunks-total> <args>
+    §b描述 : §f管理群组设置和领地
+  scs-forceunclaim: |
+    §b语法 : §f/scs forceunclaim <claim>
+    §b描述 : §f强制取消认领领地
+  scs-setowner: |
+    §b语法 : §f/scs setowner <claim> <player>
+    §b描述 : §f设置领地的所有者
+  scs-set-lang: |
+    §b语法 : §f/scs set-lang <language>
+    §b描述 : §f设置插件的语言
+  scs-reset-all-player-claims-settings: |
+    §b语法 : §f/scs reset-all-player-claims-settings
+    §b描述 : §f将所有玩家领地设置重置为默认值
+  scs-reset-all-admin-claims-settings: |
+    §b语法 : §f/scs reset-all-admin-claims-settings
+    §b描述 : §f将所有管理员领地设置重置为默认值
+  scs-admin: |
+    §b语法 : §f/scs admin
+    §b描述 : §f打开管理员界面
+  scs-setexpulsionlocation: |
+    §b语法 : §f/scs setexpulsionlocation
+    §b描述 : §f设置驱逐位置
+  next-page: §7第 %page% 页 - 点击访问下一页
+  previous-page: §7第 %page% 页 - 点击访问上一页
+  
+sub-arg-not-found: |
+  %help-separator%
+  §f子参数 '§c%arg%§f' 未找到，可用参数：
+  §7%args%§f。
+  %help-separator%
+  
+available-args: |
+  %help-separator%
+  §f可用参数：
+  §7%args%§f。
+  %help-separator%
+
+
+# > 私人聊天消息
+
+chat-format: "§b[领地聊天]§e %player%§7: §f%message%"
+talking-now-in-claim: "§f您现在在 §e领地聊天§f 中发言。"
+talking-now-in-public: "§f您现在在 §a公共聊天§f 中发言。"
+
+
+# > 基岩版菜单
+
+bedrock-manage-members-title: "成员 (%members-count%)"
+bedrock-manage-bans-title: "禁止 (%bans-count%)"
+bedrock-manage-chunks-title: "区块 (%chunks-count%)"
+bedrock-manage-settings-title: "设置"
+bedrock-unclaim-title: "取消认领"
+bedrock-teleport-claim-title: "传送"
+
+bedrock-gui-main-title: "%name%"
+bedrock-gui-unclaim-confirm-title: "确认取消认领？"
+bedrock-gui-claim-confirm-title: "确认认领？"
+bedrock-gui-chunk-confirm-title: "确认添加区块？"
+bedrock-gui-bans-title: "禁止: %name%"
+bedrock-gui-chunks-title: "区块: %name%"
+bedrock-gui-list-title: "我的领地"
+bedrock-gui-members-title: "成员: %name%"
+bedrock-gui-settings-title: "设置: %name%"
+bedrock-gui-claims-title: "领地"
+bedrock-gui-claims-owner-title: "领地: %owner%"
+
+bedrock-gui-settings-role1: "访客"
+bedrock-gui-settings-role2: "成员"
+bedrock-gui-settings-role3: "自然"
+
+bedrock-gui-bans-click: "点击解除玩家的禁止"
+bedrock-gui-members-click: "点击移除玩家"
+bedrock-gui-chunks-click: "点击移除此区块"
+bedrock-back-page-main: "返回主页"
+bedrock-gui-list-click-1: "您的领地，点击管理领地"
+bedrock-gui-list-click-2: "您是成员的领地，点击传送"
+bedrock-gui-list-filter: "更改筛选"
+bedrock-gui-claims-filter: "更改筛选"
+bedrock-gui-claims-click-1: "所有领地"
+bedrock-gui-claims-click-2: "所有待售领地"
+bedrock-gui-claims-click-3: "所有在线所有者的领地"
+bedrock-gui-claims-click-4: "所有离线所有者的领地"
+bedrock-gui-claims-owner-click-1: "%owner% 的所有领地"
+bedrock-gui-claims-owner-click-2: "%owner% 的所有待售领地"
+bedrock-gui-claims-owner-filter: "更改筛选"
+
+bedrock-build-title: "建造"
+bedrock-destroy-title: "破坏"
+bedrock-buttons-title: "使用按钮"
+bedrock-items-title: "使用物品"
+bedrock-interactblocks-title: "与方块互动"
+bedrock-levers-title: "使用拉杆"
+bedrock-plates-title: "使用压力板"
+bedrock-doors-title: "开门"
+bedrock-trapdoors-title: "开活板门"
+bedrock-fencegates-title: "开栅栏门"
+bedrock-tripwires-title: "触发绊线"
+bedrock-repeaterscomparators-title: "使用中继器/比较器"
+bedrock-bells-title: "使用钟"
+bedrock-entities-title: "与实体互动"
+bedrock-explosions-title: "爆炸"
+bedrock-liquids-title: "液体"
+bedrock-redstone-title: "红石"

@@ -1,0 +1,579 @@
+# **********************
+# *  General settings  *
+# **********************
+
+
+# Update settings
+check-for-updates: true
+updates-notifications: true
+
+# You can copy the file "en_US.yml" and paste it with another name to create your custom language
+# You have to change just below with the name of your custom language file to apply changes
+lang: "en_US.yml"
+
+# Database settings
+database: false
+database-settings:
+  hostname: localhost
+  port: 3306
+  database_name: test_server
+  username: root
+  password: pass
+
+# Aliases
+# Configure the aliases of the main commands.
+# The permissions of these commands are the same.
+command-aliases:
+  claim:
+    - /territory
+  unclaim:
+    - /unterritory
+  claims:
+    - /territories
+    
+# Configure the aliases of the worlds.
+world-aliases:
+  world: Overworld
+  world_nether: Nether
+  world_the_end: End
+
+
+# ********************
+# *  Claim settings  *
+# ********************
+
+
+# Autopurge claims
+# auto-purge-checking is in minutes (every x minutes the plugin will purge the claims)
+# auto-purge-time-without-login accepts this format : 5s, 5m, 5h, 5d, 5w (5 is for example)
+auto-purge: true
+auto-purge-checking: 60
+auto-purge-time-without-login: 14d
+
+# Mode for claims per world
+# Modes:
+# - SURVIVAL: Classic mode, claims are available, you can build inside/outside your claims
+# - SURVIVAL_REQUIRING_CLAIMS: Advanced mode, claims are available, you can build only inside your claims
+# /!\ PERMS outside claims for this mode are configurable, see below (in permissions section)
+# - DISABLED: Claims are completely disabled
+# By default, if a world doesn't appear in the list, the plugin will use Survival mode.
+claims-worlds-mode:
+  world: SURVIVAL
+  world_nether: SURVIVAL
+  world_the_end: SURVIVAL
+  example_world: DISABLED
+  example_only_claims: SURVIVAL_REQUIRING_CLAIMS
+
+# Where the protection messages are displayed
+# Allowed type : ACTION_BAR (default), BOSSBAR, SUBTITLE, TITLE and CHAT
+protection-message: ACTION_BAR
+
+# Keep chunks loaded even if no players in
+keep-chunks-loaded: false
+
+# Length max for claim name
+max-length-claim-name: 16
+
+# Length max for claim description
+max-length-claim-description: 50
+
+# Is there an invitation system for claims? If not, players can add anyone to their claims
+claim-invitations-system: false
+
+# Expiration of an invitation (in seconds)
+claim-invitation-expiration-delay: 120
+
+# Confirmation before claiming? (available with adding chunks system too)
+claim-confirmation: false
+
+# Display particles on the borders when claiming?
+claim-particles: true
+
+# Display particles when a player can not enter
+claim-particles-not-enter: true
+
+# Disable claim fly on damage (of any type)
+claim-fly-disabled-on-damage: true
+
+# Send a message to player when auto fly enable the fly ?
+claim-fly-message-auto-fly: true
+
+# Enable/Disable the enter/leave message in the action bar
+enter-leave-messages: true
+
+# Enable/Disable the enter/leave message in the title and subtitle
+enter-leave-title-messages: true
+
+# Enable/Disable the enter/leave message in the chat
+enter-leave-chat-messages: true
+
+# Should claims with the GuiTeleport setting disabled be displayed in /claims?
+claims-visitors-off-visible: true
+
+# Enable/Disable the economy system (sell/buy claims)
+economy: true
+
+# Max sell price for a claim
+max-sell-price: 1000000000
+
+# If /claim is paid
+claim-cost: true
+# If adding chunk to a claim is paid
+chunk-cost: true
+
+# If claim cost is multiplied (for example if claim-cost-multipler = 2, first claim will be the claim-cost, 1000 for example,
+# the second claim will cost 2000, the third one 4000 ..)
+claim-cost-multiplier: true
+# Same for adding chunk
+chunk-cost-multiplier: true
+
+# Use formatted number for costs (10,000,000 = 10M for example)
+use-formatted-number: true
+
+# Settings of announce
+announce-sale:
+
+  # Announce sale in bossbar
+  bossbar: true
+  bossbar-settings:
+    color: RED
+    style: SOLID
+    
+  # Announce sale in chat
+  chat: true
+  
+  # Announce sale in title/subtitle
+  title: true
+  
+  # Announce sale in actionbar
+  actionbar: true
+
+# Enable/Disable the bossbar when you are in a territory
+# Placeholders :
+# Use %owner% for owner's name (not for protected area)
+# Use %player% for player's name
+# Use %name% for claim's name
+bossbar: true
+bossbar-settings:
+  color: YELLOW
+  style: SOLID
+
+# If delay > 0, can the player move
+# true = can move, false = cannot move
+teleportation-delay-moving: false
+
+# Where the auto-map is sent.
+# Available types : CHAT and SCOREBOARD.
+map-type: SCOREBOARD
+
+# Location when a player is banned/kicked from a claim
+expulsion-location: {}
+
+
+# ******************
+# *  Map settings  *
+# ******************
+
+
+# Dynmap support
+dynmap: true
+dynmap-settings:
+  claim-border-color: FFFFFF
+  claim-fill-color: A5A5A5
+  claim-opacity: 0.5
+  claim-hover-text: "%claim-name% - Owner: %owner%"
+
+# Bluemap support
+bluemap: true
+bluemap-settings:
+  claim-border-color: FFFFFF
+  claim-fill-color: A5A5A5
+  claim-opacity: "80"
+  claim-hover-text: "%claim-name% - Owner: %owner%"
+
+# Pl3xmap support
+pl3xmap: true
+pl3xmap-settings:
+  claim-border-color: FFFFFF
+  claim-fill-color: A5A5A5
+  claim-hover-text: "%claim-name% - Owner: %owner%"
+  # Opacity of claim fill (0-255, 0 = fully transparent, 255 = fully opaque)
+  claim-opacity: 128
+
+
+# **************************
+# *  Permissions settings  *
+# **************************
+
+
+# Groups settings with permissions
+# 0 for infinite claims
+# 0 for no delay (in seconds)
+# 0 for unlimited members
+# Be careful, if you set the claim radius to 0, there is a risk of lag if players claim with a too large radius
+# Be careful of max-radius-claims and max-chunks-per-claim, one depends of the other, for example :
+# if you put 4 to max-chuns-per-claim and 1 to max-radius-claims, players cannot use radius claim because the max chunks is set to 4
+# it must be 9 for radius 1
+# same for max-chunks-total
+groups:
+  admin:
+    permission: scs.group.admin
+    max-claims: 0
+    max-radius-claims: 0
+    teleportation-delay: 0
+    max-members: 0
+    claim-cost: 0
+    claim-cost-multiplier: 0
+    max-chunks-per-claim: 0
+    claim-distance: 0
+    max-chunks-total: 0
+    chunk-cost: 0
+    chunk-cost-multiplier: 0
+  vip: # Example
+    permission: scs.group.vip
+    max-claims: 15
+    max-radius-claims: 2
+    teleportation-delay: 0
+    max-members: 5
+    claim-cost: 50
+    claim-cost-multiplier: 2
+    max-chunks-per-claim: 10
+    claim-distance: 0
+    max-chunks-total: 50
+    chunk-cost: 25
+    chunk-cost-multiplier: 2
+  default:
+    max-claims: 1
+    max-radius-claims: 1
+    teleportation-delay: 5
+    max-members: 2
+    claim-cost: 50
+    claim-cost-multiplier: 2
+    max-chunks-per-claim: 4
+    claim-distance: 0
+    max-chunks-total: 20
+    chunk-cost: 25
+    chunk-cost-multiplier: 2
+    
+# Players settings
+# 0 for infinite claims
+# 0 for no delay (in seconds)
+# 0 for unlimited members
+# Be careful, if you set the claim radius to 0, there is a risk of lag if players claim with a too large radius
+# Be careful of max-radius-claims and max-chunks-per-claim, one depends of the other, for example :
+# if you put 4 to max-chuns-per-claim and 1 to max-radius-claims, players cannot use radius claim because the max chunks is set to 4
+# it must be 9 for radius 1
+# same for max-chunks-total
+players: {}
+  # Xyness:
+  # max-claims: 0
+  # max-radius-claims: 0
+  # teleportation-delay: 0
+  # max-members: 0
+  # claim-cost: 0
+  # claim-cost-multiplier: 0
+  # max-chunks-per-claim: 0
+  # claim-distance: 0
+  # max-chunks-total: 20
+  # chunk-cost: 0
+  # chunk-cost-multiplier: 0
+
+
+# *************************
+# *  Protection settings  *
+# *************************
+
+
+# Enable/Disable settings, if you put "false", players cannot change this setting is their claims
+status-settings:
+  Build: true
+  Destroy: true
+  Buttons: true
+  Items: true
+  InteractBlocks: true
+  Levers: true
+  Plates: true
+  Doors: true
+  Trapdoors: true
+  Fencegates: true
+  Tripwires: true
+  RepeatersComparators: true
+  Bells: true
+  Entities: true
+  Explosions: true
+  Liquids: true
+  Redstone: true
+  Frostwalker: true
+  Firespread: true
+  Teleportations: true
+  Damages: true
+  Pvp: true
+  Monsters: true
+  Weather: true
+  Fly: true
+  GuiTeleport: true
+  Portals: true
+  Enter: true
+  ItemsPickup: true
+  ItemsDrop: true
+  SpecialBlocks: true
+  Elytra: true
+  Windcharges: true
+
+# List of default values for the settings
+default-values-settings:
+  Members:
+    Build: true
+    Destroy: true
+    Buttons: true
+    Items: true
+    InteractBlocks: true
+    Levers: true
+    Plates: true
+    Doors: true
+    Trapdoors: true
+    Fencegates: true
+    Tripwires: true
+    RepeatersComparators: true
+    Bells: true
+    Entities: true
+    Frostwalker: true
+    Teleportations: true
+    Damages: true
+    Fly: true
+    Weather: false
+    GuiTeleport: true
+    Portals: true
+    Enter: true
+    ItemsPickup: true
+    ItemsDrop: true
+    SpecialBlocks: false
+    Elytra: true
+    Windcharges: true
+  Visitors:
+    Build: false
+    Destroy: false
+    Buttons: true
+    Items: true
+    InteractBlocks: false
+    Levers: true
+    Plates: true
+    Doors: true
+    Trapdoors: true
+    Fencegates: true
+    Tripwires: true
+    RepeatersComparators: true
+    Bells: true
+    Entities: false
+    Frostwalker: false
+    Teleportations: false
+    Damages: false
+    Fly: false
+    Weather: true
+    GuiTeleport: true
+    Portals: false
+    Enter: true
+    ItemsPickup: false
+    ItemsDrop: false
+    SpecialBlocks: false
+    Elytra: false
+    Windcharges: false
+  Natural:
+    Explosions: false
+    Liquids: false
+    Redstone: false
+    Firespread: false
+    Monsters: true
+    Pvp: false
+
+# List of permissions to use when world mode is SurvivalRequiringClaims (outside the claims)
+permissions-on-SurvivalRequiringClaims:
+  Build: false
+  Destroy: false
+  Buttons: false
+  Items: true
+  InteractBlocks: false
+  Levers: false
+  Plates: false
+  Doors: false
+  Trapdoors: false
+  Fencegates: false
+  Tripwires: false
+  RepeatersComparators: false
+  Bells: false
+  Entities: false
+  Frostwalker: true
+  Teleportations: true
+  Damages: false
+  Portals: false
+  ItemsPickup: true
+  ItemsDrop: true
+  SpecialBlocks: false
+  Elytra: true
+  Windcharges: true
+  Explosions: false
+  Liquids: false
+  Redstone: false
+  Firespread: false
+  Monsters: true
+  Pvp: false
+
+# List of blocked containers for the setting "Interact with blocks"
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+blocked-interact-blocks:
+- FURNACE
+- BLAST_FURNACE
+- ANVIL
+- DAMAGED_ANVIL
+- BREWING_STAND
+- CHISELED_BOOKSHELF
+- COMPOSTER
+- DISPENSER
+- DROPPER
+- ENCHANTING_TABLE
+- HOPPER
+- JUKEBOX
+- STONECUTTER
+- BARREL
+- BEACON
+- CRAFTING_TABLE
+- SHULKER_BOX
+- CHEST
+- ENDER_CHEST
+- TRAPPED_CHEST
+- DRAGON_EGG
+- RESPAWN_ANCHOR
+- CAULDRON
+- LAVA_CAULDRON
+- WATER_CAULDRON
+- WHITE_SHULKER_BOX
+- ORANGE_SHULKER_BOX
+- MAGENTA_SHULKER_BOX
+- LIGHT_BLUE_SHULKER_BOX
+- YELLOW_SHULKER_BOX
+- LIME_SHULKER_BOX
+- PINK_SHULKER_BOX
+- GRAY_SHULKER_BOX
+- LIGHT_GRAY_SHULKER_BOX
+- CYAN_SHULKER_BOX
+- PURPLE_SHULKER_BOX
+- BLUE_SHULKER_BOX
+- BROWN_SHULKER_BOX
+- GREEN_SHULKER_BOX
+- RED_SHULKER_BOX
+- BLACK_SHULKER_BOX
+- CRAFTER
+- WHITE_BED
+- ORANGE_BED
+- MAGENTA_BED
+- LIGHT_BLUE_BED
+- YELLOW_BED
+- LIME_BED
+- PINK_BED
+- GRAY_BED
+- LIGHT_GRAY_BED
+- CYAN_BED
+- PURPLE_BED
+- BLUE_BED
+- BROWN_BED
+- GREEN_BED
+- RED_BED
+- BLACK_BED
+- OAK_SIGN
+- SPRUCE_SIGN
+- BIRCH_SIGN
+- JUNGLE_SIGN
+- ACACIA_SIGN
+- CHERRY_SIGN
+- DARK_OAK_SIGN
+- MANGROVE_SIGN
+- BAMBOO_SIGN
+- CRIMSON_SIGN
+- WARPED_SIGN
+- OAK_HANGING_SIGN
+- SPRUCE_HANGING_SIGN
+- BIRCH_HANGING_SIGN
+- JUNGLE_HANGING_SIGN
+- ACACIA_HANGING_SIGN
+- CHERRY_HANGING_SIGN
+- DARK_OAK_HANGING_SIGN
+- MANGROVE_HANGING_SIGN
+- BAMBOO_HANGING_SIGN
+- CRIMSON_HANGING_SIGN
+- WARPED_HANGING_SIGN
+- OAK_WALL_SIGN
+- SPRUCE_WALL_SIGN
+- BIRCH_WALL_SIGN
+- ACACIA_WALL_SIGN
+- CHERRY_WALL_SIGN
+- JUNGLE_WALL_SIGN
+- DARK_OAK_WALL_SIGN
+- MANGROVE_WALL_SIGN
+- BAMBOO_WALL_SIGN
+- OAK_WALL_HANGING_SIGN
+- SPRUCE_WALL_HANGING_SIGN
+- BIRCH_WALL_HANGING_SIGN
+- ACACIA_WALL_HANGING_SIGN
+- CHERRY_WALL_HANGING_SIGN
+- JUNGLE_WALL_HANGING_SIGN
+- DARK_OAK_WALL_HANGING_SIGN
+- MANGROVE_WALL_HANGING_SIGN
+- CRIMSON_WALL_HANGING_SIGN
+- WARPED_WALL_HANGING_SIGN
+- BAMBOO_WALL_HANGING_SIGN
+- CRIMSON_WALL_SIGN
+- WARPED_WALL_SIGN
+- LOOM
+- SMOKER
+
+# List of blocked items for the setting "Use items"
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+blocked-items:
+- ENDER_PEARL
+- BOW
+- CROSSBOW
+- TRIDENT
+- FLINT_AND_STEEL
+- FIRE_CHARGE
+- BUCKET
+- WATER_BUCKET
+- LAVA_BUCKET
+- CHORUS_FRUIT
+- FIREWORK_ROCKET
+- FIREWORK_STAR
+- ENDER_EYE
+- FISHING_ROD
+- LEAD
+
+# List of blocked entity type for the setting "Entities"
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/entity/EntityType.html
+blocked-entities:
+- VILLAGER
+- SHEEP
+- ITEM_FRAME
+- GLOW_ITEM_FRAME
+- ARMOR_STAND
+- PAINTING
+- BOAT
+- MINECART
+- HORSE
+- DONKEY
+- MULE
+- PIG
+- STRIDER
+- LLAMA
+
+# List of blocked blocks for the setting "Destroy special blocks"
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+special-blocks:
+- SPAWNER
+
+# List of ignored blocks for the settings "Destroy"
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+ignored-break-blocks:
+- BEDROCK
+
+# List of ignored blocks for the settings "Build"
+# https://hub.spigotmc.org/javadocs/bukkit/org/bukkit/Material.html
+ignored-place-blocks:
+- BEDROCK
